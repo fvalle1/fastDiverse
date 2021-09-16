@@ -1,6 +1,5 @@
 #include <fstream>
 #include <string>
-#include <omp.h>
 
 #include "reader.cpp"
 
