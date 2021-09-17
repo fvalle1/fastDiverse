@@ -24,18 +24,37 @@ message(STATUS "Boost_VERSION: ${Boost_VERSION}")
 message(STATUS "Python_INCLUDE_DIRS: ${PYTHON_INCLUDE_DIRS}")
 message(STATUS "Python_LIBRARIES: ${PYTHON__LIBRARY}")
 
-include_directories(${CMAKE_SOURCE_DIR})
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+include_directories(${CMAKE_SOURCE_DIR}
+                    ${CMAKE_SOURCE_DIR}/include)
+
+set(SOURCES_DIR ${CMAKE_SOURCE_DIR}/src)
+set(SOURCES
+    ${SOURCES_DIR}/reader.cpp
+    ${SOURCES_DIR}/fileReader.cpp
+    ${SOURCES_DIR}/monitor.cpp
+    ${SOURCES_DIR}/mutex_wrapper.cpp
+    )
 
 # Build our library
-add_library(mydiversity SHARED ${CMAKE_SOURCE_DIR}/diversity.cpp)
-
+add_library(libdiversity SHARED 
+            ${SOURCES}
+            )
 # Define the wrapper library that wraps our library
 add_library(pydiversity SHARED
-        diversity.cpp
-        ${CMAKE_SOURCE_DIR}/reader.cpp)
+        ${SOURCES_DIR}/diversity.cpp
+        )
 # don't prepend wrapper library name with lib
 set_target_properties(pydiversity PROPERTIES PREFIX "" )
 # must be .so (not .dylib)
 set_target_properties(pydiversity PROPERTIES SUFFIX ".so")
 
-target_link_libraries(pydiversity ${PYTHON_LIBRARIES} ${Boost_LIBRARIES} mydiversity)
+target_link_libraries(pydiversity ${PYTHON_LIBRARIES} ${Boost_LIBRARIES} libdiversity)
+
+add_executable(diversity
+            main.cpp
+            )
+
+target_link_libraries(diversity PRIVATE Threads::Threads libdiversity)
