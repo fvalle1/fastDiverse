@@ -1,0 +1,22 @@
+name: Run
+
+on:
+  push:
+    branches: [ main develop]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: make
+    - name: run
+      run: ./diversity.out mainTable.csv 2

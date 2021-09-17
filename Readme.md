@@ -1,4 +1,5 @@
-[![C/C++ CI](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml)
+[![Make](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml)
+[![Run](https://github.com/fvalle1/fastDiverse/actions/workflows/run.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/run.yml)
 
 # Diversity estimator
 
