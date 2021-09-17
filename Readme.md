@@ -50,3 +50,6 @@ pydiversity.diversity("mainTable.csv")
 - pure C++ single Thread: (3.2 ± 0,3)s
 <!-- time ./diversity.out mainTable.csv 12-->
 - pure C++ with multiThread: (0,66 ± 0,11)s
+
+# Speedup
+![speedup](speedup.png)
