@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(diversity)
+
 #python modules
 if(UNIX)
     set( BOOST_PYTHONLIB python39)
