@@ -18,6 +18,7 @@ static std::mutex buffer_mtx;
 template <typename T>
 void append_diversity(std::vector<T> &data, T value)
 {
+    //append value if not present in data
     if (std::find(data.begin(), data.end(), value) == data.end())
     {
         data.push_back(value);
@@ -31,7 +32,7 @@ void parseRow(std::queue<std::string> &buffer, std::vector<std::vector<T>> &dive
     std::string line;
     while ((!ended) || (buffer.size() > 0)) // if there is something to parse and reader is reading
     {
-        buffer_mtx.lock();
+        buffer_mtx.lock(); //must be locked to read size()
         if (buffer.size() > 0)
         {
             // std::cerr<<buffer.size()<<std::endl;
@@ -50,7 +51,7 @@ void parseRow(std::queue<std::string> &buffer, std::vector<std::vector<T>> &dive
             {
                 std::getline(ss, entry, ',');
                 {
-                    std::lock_guard<std::mutex> lock(diversities_mtx[i]);
+                    std::lock_guard<std::mutex> lock(diversities_mtx[i]); //each thread may append different columns
                     append_diversity<T>(diversities[i], static_cast<T>(std::stoi(entry)));
                 }
             }
@@ -58,7 +59,7 @@ void parseRow(std::queue<std::string> &buffer, std::vector<std::vector<T>> &dive
         else
         {
             buffer_mtx.unlock();
-            std::this_thread::sleep_for(std::chrono::nanoseconds(1));
+            std::this_thread::sleep_for(std::chrono::nanoseconds(1)); //stability
         }
     }
 }

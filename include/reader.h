@@ -53,17 +53,22 @@ void loadFile(const char *filename, int nThreads = 6, bool verbose = false)
     bool ended = false;
     int readRows = 0;
 
+    //Threads parse rows as soon as they are available in bufferLines
     std::thread parserThreads[nThreads];
     for (int iThread = 0; iThread < nThreads; iThread++)
     {
         parserThreads[iThread] = std::thread(parseRow<T>, std::ref(bufferLines), std::ref(diversities), std::ref(diversities_mtx), std::ref(ended));
     }
 
+    //read lines from file and fill bufferLines
     std::thread(readRow, std::ref(file), std::ref(readRows), std::ref(bufferLines), std::ref(ended)).detach();
+    
+    //monitor status
     if (verbose)
     {
         std::thread(monitor<std::queue<std::string>, int>, std::ref(bufferLines), std::ref(readRows), std::ref(ended)).detach();
     }
+
     for (int iThread = 0; iThread < nThreads; iThread++)
     {
         parserThreads[iThread].join();
@@ -71,6 +76,7 @@ void loadFile(const char *filename, int nThreads = 6, bool verbose = false)
     std::cout << std::endl
               << "Finished" << std::endl;
 
+    // sum columns
     std::vector<long int>
         diversity_count;
 
@@ -82,6 +88,8 @@ void loadFile(const char *filename, int nThreads = 6, bool verbose = false)
 
     diversities.clear();
 
+
+    // save to file
     std::ofstream outfile("diversity.csv", std::ios::out);
 
     for (auto &diversity : diversity_count)

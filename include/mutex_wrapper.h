@@ -3,6 +3,8 @@
 
 #include <mutex>
 
+
+//useful to create a vector of std::mutex
 struct mutex_wrapper : std::mutex
 {
     mutex_wrapper() = default;
