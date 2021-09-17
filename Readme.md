@@ -1,3 +1,5 @@
+[![C/C++ CI](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml)
+
 # Diversity estimator
 
 Estimate the number of different elements in a rectangular matrix in a fast end efficient way.
