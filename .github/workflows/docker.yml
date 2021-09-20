@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: login
+      run: docker login -u fvalle1 -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ghcr.io/fvalle1/fastdiverse/diversity:latest
+    - name: Push the Docker image
+      run: docker push ghcr.io/fvalle1/fastdiverse/diversity:latest

@@ -1,5 +1,7 @@
 [![Make](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml)
 [![Run](https://github.com/fvalle1/fastDiverse/actions/workflows/run.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/run.yml)
+[![CodeQL](https://github.com/fvalle1/fastDiverse/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/codeql-analysis.yml)
+[![Docker Image CI](https://github.com/fvalle1/fastDiverse/actions/workflows/docker.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/docker.yml)
 
 # Diversity estimator
 
@@ -43,10 +45,13 @@ pydiversity.diversity("mainTable.csv")
 <!-- time python3 main.py -->
 - Python using *pandas*: (8.05 ± 0,11)s
 <!-- time python3 -c 'import pydiversity;pydiversity.diversity("../mainTable.csv")' -->
-- Pyhton binding single Thread: (3.3 ± 0,4)s
+- Python binding single Thread: (3.3 ± 0,4)s
 <!-- time python3 -c 'import pydiversity;pydiversity.diversity("../mainTable.csv", 12, true)' -->
-- Pyhton binding with multiThread: (0,71 ± 0,14)s
+- Python binding with multiThread: (0,71 ± 0,14)s
 <!-- time ./diversity.out mainTable.csv -->
 - pure C++ single Thread: (3.2 ± 0,3)s
 <!-- time ./diversity.out mainTable.csv 12-->
 - pure C++ with multiThread: (0,66 ± 0,11)s
+
+# Speedup
+![speedup](speedup.png)
