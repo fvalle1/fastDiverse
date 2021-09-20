@@ -15,8 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: login
-      run: docker login -u fvalle1 -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+      run: docker login -u fvalle1 -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker.pkg.github.com/fvalle1/fastdiverse/diversity:latest
+      run: docker build . --file Dockerfile --tag ghcr.io/fvalle1/fastdiverse/diversity:latest
     - name: Push the Docker image
-      run: docker push docker.pkg.github.com/fvalle1/fastdiverse/diversity:latest
+      run: docker push ghcr.io/fvalle1/fastdiverse/diversity:latest

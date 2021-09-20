@@ -1,5 +1,6 @@
 [![Make](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/make.yml)
 [![Run](https://github.com/fvalle1/fastDiverse/actions/workflows/run.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/run.yml)
+[![CodeQL](https://github.com/fvalle1/fastDiverse/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/codeql-analysis.yml)
 [![Docker Image CI](https://github.com/fvalle1/fastDiverse/actions/workflows/docker.yml/badge.svg)](https://github.com/fvalle1/fastDiverse/actions/workflows/docker.yml)
 
 # Diversity estimator

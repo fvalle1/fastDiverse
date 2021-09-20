@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 
 LABEL maintainer Filippo Valle
+LABEL org.opencontainers.image.source https://github.com/fvalle1/fastDiverse
 
 RUN apt update
 RUN apt install software-properties-common --yes
