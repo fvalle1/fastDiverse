@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: login
+      run: docker login -u fvalle1 -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/fvalle1/fastdiverse/diversity:latest
+    - name: Push the Docker image
+      run: docker push docker.pkg.github.com/fvalle1/fastdiverse/diversity:latest
