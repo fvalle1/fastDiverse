@@ -43,9 +43,9 @@ pydiversity.diversity("mainTable.csv")
 <!-- time python3 main.py -->
 - Python using *pandas*: (8.05 ± 0,11)s
 <!-- time python3 -c 'import pydiversity;pydiversity.diversity("../mainTable.csv")' -->
-- Pyhton binding single Thread: (3.3 ± 0,4)s
+- Python binding single Thread: (3.3 ± 0,4)s
 <!-- time python3 -c 'import pydiversity;pydiversity.diversity("../mainTable.csv", 12, true)' -->
-- Pyhton binding with multiThread: (0,71 ± 0,14)s
+- Python binding with multiThread: (0,71 ± 0,14)s
 <!-- time ./diversity.out mainTable.csv -->
 - pure C++ single Thread: (3.2 ± 0,3)s
 <!-- time ./diversity.out mainTable.csv 12-->
