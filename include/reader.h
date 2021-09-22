@@ -75,11 +75,10 @@ void loadFile(const char *filename, int nThreads = 6, bool verbose = false, std:
     std::cout << std::endl
               << "Finished" << std::endl;
 
-    bufferLines.clear();
+    bufferLines.clear(); //clear bufferLines to avoid memory leaks and monitor thread to stop
 
-        // sum columns
-        std::vector<long int>
-            diversity_count;
+    // sum columns
+    std::vector<long int> diversity_count;
 
     for (auto &diversity : diversities)
     {
