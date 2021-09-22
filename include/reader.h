@@ -17,12 +17,11 @@
 #include "mutex_wrapper.h"
 
 template <typename T>
-void loadFile(const char *filename, int nThreads = 6, bool verbose = false)
+void loadFile(const char *filename, int nThreads = 6, bool verbose = false, std::string out_filename = "diversity.csv")
 {
     if (nThreads < 1)
         nThreads = 2;
-    std::cout
-        << "Reding file[" << filename << "]" << std::endl;
+    std::cout<< "Reding file[" << filename << "]" << std::endl;
     std::cout << "Using " << nThreads << " threads" << std::endl;
     std::ifstream file(filename, std::ios::in);
     if (!file.is_open())
@@ -76,9 +75,11 @@ void loadFile(const char *filename, int nThreads = 6, bool verbose = false)
     std::cout << std::endl
               << "Finished" << std::endl;
 
-    // sum columns
-    std::vector<long int>
-        diversity_count;
+    bufferLines.clear();
+
+        // sum columns
+        std::vector<long int>
+            diversity_count;
 
     for (auto &diversity : diversities)
     {
@@ -90,7 +91,7 @@ void loadFile(const char *filename, int nThreads = 6, bool verbose = false)
 
 
     // save to file
-    std::ofstream outfile("diversity.csv", std::ios::out);
+    std::ofstream outfile(out_filename, std::ios::out);
 
     for (auto &diversity : diversity_count)
     {
