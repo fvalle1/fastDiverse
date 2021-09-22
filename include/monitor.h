@@ -12,7 +12,7 @@ using std::endl;
 template <typename TBuffer, typename T>
 void monitor(const TBuffer &buffer, const T &total, bool &ended)
 {
-    while (!ended || buffer.size()>0)
+    while (!ended || !buffer.empty())
     {
         cout << "\r" << buffer.size() << " row to parse out of " << total << "       ";
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
